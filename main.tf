@@ -1,11 +1,15 @@
-resource "grafana_contact_point" "my_contact_point" {
-  name = "Test Email Contact Point 1"
+terraform {
+   required_providers {
+      grafana = {
+         source  = "grafana/grafana"
+         version = ">= 2.9.0"
+      }
+   }
+}
 
-  email {
-    addresses               = ["jpx2b1@gmail.com", "jpx2b1@gmail.com"]
-    message                 = "{{ len .Alerts.Firing }} firing."
-    subject                 = "{{ template \"default.title\" .}}"
-    single_email            = true
-    disable_resolve_message = false
-  }
+provider "grafana" {
+   alias = "cloud"
+
+   url   = "https://sbglfj.grafana.net"
+   auth  = "glsa_mNP6lEHszsvtIVFJzSAqlxXhQWzFh3ig_715c2eaa"
 }
